@@ -89,6 +89,15 @@ swapon /swapfile
 sh -c 'echo "/swapfile none swap sw 0 0" >> /etc/fstab'
 echo_success "Swapfile configured."
 
+#
+# Required software
+#
+echo_formatted "Installing required software..."
+# Dokku
+wget https://raw.githubusercontent.com/dokku/dokku/v0.9.4/bootstrap.sh -O dokku-bootstrap.sh
+DOKKU_TAG=v0.9.4 bash dokku-bootstrap.sh
+
+
 # Finished
 echo ""
 echo_success "VPS Bootstraped <=="
