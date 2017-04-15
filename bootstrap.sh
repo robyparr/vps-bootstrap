@@ -77,7 +77,7 @@ echo_success "Firewall configured."
 # Timezone
 echo_formatted "Configuring timezone..."
 sudo dpkg-reconfigure tzdata
-apt-get install ntp
+apt-get install -y ntp
 echo_success "Timezone configured."
 
 # Swap file
