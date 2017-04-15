@@ -34,6 +34,9 @@ echo_formatted "Adding a new user..."
 echo -n "New user's name: "
 read username
 
+echo -n "Email: "
+read email
+
 # Lowercase the username
 # http://stackoverflow.com/a/18801723
 username=$(echo "$username" | tr '[:upper:]' '[:lower:]')
@@ -101,7 +104,32 @@ dokku plugin:install https://github.com/dokku/dokku-mysql.git mysql
 dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 git clone https://github.com/dokku/dokku-maintenance.git /var/lib/dokku/plugins/maintenance
 
+# Required software packages
+apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail
+
+# Fail2ban
+echo "findtime = 600" > /etc/fail2ban/jail.local
+echo "maxretry = 3" >> /etc/fail2ban/jail.local
+echo "bantime = 3600" >> /etc/fail2ban/jail.local
+
+echo "gem: --no-document" > ~/.gemrc
+gem install bundler
+
+echo_success "Required software installed."
+
+# Crontab
+echo_formatted "Configuring scheduled jobs..."
+echo "MAILTO=$email" >> /etc/cron.d/custom_tasks
+echo "@weekly root /usr/sbin/chkrootkit" >> /etc/cron.d/custom_tasks
+echo "@daily root sudo clamscan -ri / 2> /dev/null" >> /etc/cron.d/custom_tasks
+echo_success "Scheduled jobs configured."
+
 # Finished
+echo "Subject: VPS bootstrapped!" > ~/email
+echo "Your VPS has been bootstrapped!" >> ~/email
+cat ~/email | sendmail $email
+rm ~/email
+
 echo ""
 echo_success "VPS Bootstraped <=="
 
