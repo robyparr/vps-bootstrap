@@ -97,6 +97,9 @@ echo_formatted "Installing required software..."
 wget https://raw.githubusercontent.com/dokku/dokku/v0.9.4/bootstrap.sh -O dokku-bootstrap.sh
 DOKKU_TAG=v0.9.4 bash dokku-bootstrap.sh
 
+dokku plugin:install https://github.com/dokku/dokku-mysql.git mysql
+dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
+git clone https://github.com/dokku/dokku-maintenance.git /var/lib/dokku/plugins/maintenance
 
 # Finished
 echo ""
