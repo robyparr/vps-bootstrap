@@ -18,7 +18,9 @@ A simple VPS bootstrap script for quick setup of my VPS.
 * fail2ban
 * chkrootkit
 * sendmail
-* ruby
+* Ruby
+* Python pip
+* AWS CLI
 
 ## Scheduled maintenance
 * Rootkit scan (chkrootkit)

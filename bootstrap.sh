@@ -105,7 +105,7 @@ dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 git clone https://github.com/dokku/dokku-maintenance.git /var/lib/dokku/plugins/maintenance
 
 # Required software packages
-apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby
+apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby python-pip
 
 # Fail2ban
 echo "findtime = 600" > /etc/fail2ban/jail.local
@@ -114,6 +114,13 @@ echo "bantime = 3600" >> /etc/fail2ban/jail.local
 
 echo "gem: --no-document" > ~/.gemrc
 gem install bundler
+
+# AWS
+pip install --upgrade pip
+pip install awscli
+
+aws configure
+
 
 echo_success "Required software installed."
 
