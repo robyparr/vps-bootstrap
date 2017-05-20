@@ -108,7 +108,7 @@ dokku config:set --global CURL_TIMEOUT=600
 dokku config:set --global CURL_CONNECT_TIMEOUT=30
 
 # Required software packages
-apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby python-pip
+apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby python-dev libpq-dev python-pip
 
 # Fail2ban
 echo "findtime = 600" > /etc/fail2ban/jail.local
@@ -120,7 +120,7 @@ gem install bundler
 
 # AWS
 pip install --upgrade pip
-pip install awscli
+pip install --ignore-installed awscli
 
 aws configure
 
