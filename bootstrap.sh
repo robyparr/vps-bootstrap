@@ -129,6 +129,7 @@ ln -s /usr/local/lynis/lynis /usr/bin/lynis
 
 # AWS
 pip install --upgrade pip
+pip install setuptools
 pip install --ignore-installed awscli
 
 aws configure
