@@ -111,9 +111,7 @@ dokku config:set --global CURL_CONNECT_TIMEOUT=30
 apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby python-dev libpq-dev python-pip
 
 # Fail2ban
-echo "findtime = 600" > /etc/fail2ban/jail.local
-echo "maxretry = 3" >> /etc/fail2ban/jail.local
-echo "bantime = 3600" >> /etc/fail2ban/jail.local
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
 echo "gem: --no-document" > ~/.gemrc
 gem install bundler
