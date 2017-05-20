@@ -104,6 +104,9 @@ dokku plugin:install https://github.com/dokku/dokku-mysql.git mysql
 dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git
 git clone https://github.com/dokku/dokku-maintenance.git /var/lib/dokku/plugins/maintenance
 
+dokku config:set --global CURL_TIMEOUT=600
+dokku config:set --global CURL_CONNECT_TIMEOUT=30
+
 # Required software packages
 apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm3 libgdbm-dev fail2ban chkrootkit clamav sendmail ruby python-pip
 
