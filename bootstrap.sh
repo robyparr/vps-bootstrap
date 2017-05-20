@@ -114,8 +114,18 @@ apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libread
 # Fail2ban
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
 
+# Bundler setuo
 echo "gem: --no-document" > ~/.gemrc
 gem install bundler
+
+# Lynis
+mkdir -p /usr/local/lynis
+cd /usr/local
+wget https://cisofy.com/files/lynis-2.5.0.tar.gz
+tar xfvz lynis-2.5.0.tar.gz
+cd lynis
+chmod +x lynis
+ln -s /usr/local/lynis/lynis /usr/bin/lynis
 
 # AWS
 pip install --upgrade pip
